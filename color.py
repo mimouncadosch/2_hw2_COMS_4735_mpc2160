@@ -14,10 +14,6 @@ def color_similarity(idx1, idx2, b, black_lb):
     if idx1 < 10: idx1 = "0" + str(idx1)
     if idx2 < 10: idx2 = "0" + str(idx2)
 
-    # Custom method
-    # hist1 = histogram(256/b, idx1)
-    # hist2 = histogram(256/b, idx2)
-
     img1 = cv2.imread("../Images/i" + str(idx1) + ".ppm")
     img2 = cv2.imread("../images/i" + str(idx2) + ".ppm")  # Define how many pixels are considered "black"
 
@@ -27,17 +23,9 @@ def color_similarity(idx1, idx2, b, black_lb):
     ub = (255, 255, 255)
     mask = cv2.inRange(img1, lb, ub)
 
-    # This mask only includes pixels with value > 0
-    # mask2 = cv2.imread("../Images/i" + idx1 + ".ppm",0)
-
-    # Creates 3D histogram for image 1
-
+    # Creates 3D histograms
     hist1 = cv2.calcHist([img1], [0, 1, 2], mask, [b, b, b], [0, 256, 0, 256, 0, 256])
     hist2 = cv2.calcHist([img2], [0, 1, 2], mask, [b, b, b], [0, 256, 0, 256, 0, 256])
-
-    # bl_ignored1 = np.sum(hist1) / pixels
-    # bl_ignored2 = np.sum(hist2) / pixels
-    # print "Percentage of black pixels ignored: %0.2f" % (1-bl_ignored)
 
     pixels = 89 * 60
 

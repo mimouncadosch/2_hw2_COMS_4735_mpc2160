@@ -12,26 +12,6 @@ def texture_similarity(idx1, idx2, b, b_lb):
     img1 = cv2.imread("../Images/i" + str(idx1) + ".ppm", 0)
     img2 = cv2.imread("../Images/i" + str(idx2) + ".ppm", 0)
 
-    # img1 = np.matrix([[100,200, 10], [0, 2, 200], [28, 45, 230]])
-    # img1 = np.float32(img1)
-
-    # lb = (10)
-    # up = (255)
-
-    # mask = cv2.inRange(img1, lb, up)
-    #
-    # cv2.imshow("img1", img1)
-    # cv2.waitKey(0)
-    # cv2.imshow("img2", img2)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
-    # mask1 = cv2.inRange(img1, lb, up) / 255
-    # mask2 = cv2.inRange(img2, lb, up) / 255
-    #
-    # mask1 = np.float32(mask1)
-    # mask2 = np.float32(mask2)
-
     kernel = np.matrix([[1, 1, 1], [1, -8, 1], [1, 1, 1]])
 
     l1 = cv2.filter2D(img1, cv2.CV_32F, kernel)
@@ -40,18 +20,9 @@ def texture_similarity(idx1, idx2, b, b_lb):
     masked_l1 = l1[img1 > b_lb]
     masked_l2 = l2[img2 > b_lb]
 
-    # masked_l1 = l1
-    # masked_l2 = l2
-    # masked_l1 = cv2.multiply(mask1, l1)
-    # masked_l2 = cv2.multiply(mask2, l2)
-    #
-    # masked_l1 = masked_l1[masked_l1 != 0]
-    # masked_l2 = masked_l2[masked_l2 != 0]
-
     h1 = create_histogram(masked_l1, b, idx1)
     h2 = create_histogram(masked_l2, b, idx2)
 
-    # cv2.destroyAllWindows()
     pixels = 89 * 60
 
     # L1 distance
@@ -60,7 +31,6 @@ def texture_similarity(idx1, idx2, b, b_lb):
 
     # Similarity: 1 - distance
     s = 1 - d_l1
-    # print s
     return s
 
     return True
