@@ -12,27 +12,10 @@ def cluster(C, T):
 
     for r in np.arange(0, 1, 0.1):
         S = r*T + (1-r)*C
-
-
-        # plt.plot(x,T)
-        # plt.plot(x,C)
-        # plt.plot(x,S)
-        # plt.show()
-        # C_data = [abs(C[x] - T[x]) for x in rng]
-        # T_data = [abs(T[x] - S[x]) for x in rng]
         S_data = [S[x] for x in rng]
-        # plt.plot(C_data)
-        # plt.plot(T_data)
         plt.plot(S_data)
         plt.show()
-        # color_diff = abs(C - S)
-        # text_diff = abs(T - S)
-        #
-        # sum_similarities = np.sum(S)
-        # print np.sum(text_diff)
 
-        # total_dev = np.sum(color_diff) + np.sum(text_diff)
-        # devs.append(sum_similarities)
 
     # np.divide(devs, 1600)
     return devs
