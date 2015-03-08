@@ -21,12 +21,11 @@ if __name__ == "__main__":
     g1_inter    = np.zeros((b_lb_max/b_lb_step))
     g2_inter    = np.zeros((b_lb_max/b_lb_step))
 
-    # Pass the matrix instead of creating it every time
     for i in np.arange(0, b_lb_max, b_lb_step):
         c_similarities = group_similarity('C', b, i, r, textured, smooth)
         g_to_g[i]   = c_similarities[0]
         g1_inter[i] = c_similarities[1]
-        g2_inter[i] =  c_similarities[2]
+        g2_inter[i] = c_similarities[2]
 
 
     # plt.plot(g_to_g, label="intra-group")
