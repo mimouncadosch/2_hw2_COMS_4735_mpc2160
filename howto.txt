@@ -1,0 +1,19 @@
+Make a function:
+similarities(type_of_similarity, b, r)
+
+type_of_similarity = C, T, or S
+r only matters when M
+b matters for all
+
+Create two groups:
+text = [1,2,...]
+smooth = [17,19,...]
+
+compute total similarity for i in text and j in text
+compute total similarity for i in smooth and j in smooth
+compute total similarity for i in text and j in smooth
+
+find b that minimizes text, text and smooth, smooth
+... and maximizes text smooth
+
+
