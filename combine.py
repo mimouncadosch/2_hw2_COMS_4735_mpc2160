@@ -2,8 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 def combine(C, T, r):
-
-    return True
+    S = r * T + (1-r) * C
+    return S
 
     # S = np.zeros((1600, ))
     # C = C.flatten()
