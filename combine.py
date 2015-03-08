@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 def combine(C, T, r):
-    
+
     return True
 
     # S = np.zeros((1600, ))
