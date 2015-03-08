@@ -3,16 +3,17 @@ import cv2
 from color import color_similarity
 
 
-def color_similarity_matrix(b, black_lb):
+def color_similarity_matrix(b, b_lb):
     """Computes the similarity matrix for the set of images
-    b 	: number of bins
+    b 	    : number of bins
+    b_lb    : lower bound for pixel values considered black. In other words, all values < b_lb will be considered black
     """
     M = np.zeros((40, 40))
 
     # Numpy matrix indexed from 0 to 39, images labeled from 1 to 40
     for i in xrange(0, 40):
         for j in xrange(0, 40):
-            M[j, i] = color_similarity(i+1, j+1, b, black_lb)
+            M[j, i] = color_similarity(i+1, j+1, b, b_lb)
 
     return M
 
