@@ -5,7 +5,7 @@ from scipy.cluster.hierarchy import linkage, fcluster
 
 def img_cluster(M):
 
-    
+
     L = linkage(M, method='complete', metric='euclidean')
     fl = fcluster(L, 7, criterion='maxclust')
 
@@ -35,6 +35,7 @@ def img_cluster(M):
 #     return True
 
 # def dist_cluster_to_image(D, c1, idx):
+
 #
 #     """
 #     :param c1:  cluster index
