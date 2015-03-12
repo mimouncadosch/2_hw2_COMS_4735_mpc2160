@@ -1,11 +1,16 @@
 import numpy as np
 import cv2
+from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from histogram import histogram
+import timeit
+
 
 """Computes the similarity metric between two images
 idx1	: index of first image
 idx2 	: index of second image
 b 		: number of bins
+b_lb    : the lower bound of what is considered a "black" pixel
 """
 
 
@@ -37,3 +42,69 @@ def color_similarity(idx1, idx2, b, black_lb):
     s = 1 - d_l1
 
     return s
+
+
+if __name__ == "__main__":
+    bins_sims = []
+    blb_sims = []
+    runtimes = []
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+
+    # x =[1,2,3,4,5,6,7,8,9,10]
+    # y =[5,6,2,3,13,4,1,2,4,8]
+    # z =[2,3,3,3,5,7,9,11,9,10]
+
+
+
+
+    # x = []
+    # y = []
+    # z = []
+    #
+    # for b in np.arange(1, 256, 10):
+    #     for l in np.arange(0, 5, 0.5):
+    #         x.append(b)
+    #         y.append(l)
+    #         similarity = (color_similarity(5, 6, b, l))
+    #         z.append(similarity)
+    #
+    #
+    # ax.scatter(x, y, z, c='r', marker='o')
+    #
+    # ax.set_xlabel('Bins')
+    # ax.set_ylabel('Black pixels')
+    # ax.set_zlabel('Similarity')
+    #
+    # plt.show()
+
+
+    # # Testing for different nbins values
+    # # for s in np.arange(1, 256, 10):
+    # #     # print s
+    # #     start = timeit.default_timer()
+    # #     similarity = (color_similarity(5, 6, s, 0))
+    # #     stop = timeit.default_timer()
+    # #     # print stop - start
+    # #     runtimes.append(stop-start)
+    # #     bins_sims.append(similarity)
+    # # plt.plot((sims))
+    # # plt.plot((runtimes))
+    # # plt.plot(np.diff(sims))
+    # # plt.plot(np.diff(runtimes))
+    #
+    # Testing for different b_lb values
+    for s in np.arange(0, 200,1):
+        # print s
+        similarity = (color_similarity(17, 18, 10, s))
+        # print similarity
+        blb_sims.append(similarity)
+    plt.plot((blb_sims))
+    plt.show()
+
+
+
+    # # fig = plt.figure()
+    # # ax = fig.add_subplot(111, projection='3d')
+    # # ax.plot(bins_sims, blb_sims)
+    #
