@@ -12,6 +12,8 @@ if __name__ == "__main__":
     textured    = [1,2,3,4,5,6,7,8,9, 10, 11]
     smooth      = [12,13,14,15,16,17, 18, 19, 20]
 
+    C = color_similarity_matrix(41, 5)
+    color_montage(C)
     # b           = 32
     # r           = 1
     # b_lb_max    = 10
@@ -43,10 +45,10 @@ if __name__ == "__main__":
     #     t_similarities = group_similarity('T', b, i, r, textured, smooth)
 
 
-    # TODO: Decide parameters:
-    b_lb = 0
-    b = 100
-    r = 0.3
+    # # TODO: Decide parameters:
+    # b_lb = 0
+    # b = 100
+    # r = 0.3
 
     # for i in np.arange(0, r_max, r_step):
     #     s_similarities = group_similarity('S', b, b_lb, i, textured, smooth)
@@ -54,14 +56,14 @@ if __name__ == "__main__":
 
     # Parameters b and b_lb are selected
 
-
-    C = color_similarity_matrix(b, b_lb)
-    T = texture_similarity_matrix(b, b_lb)
-    # color_montage(C)
-    # texture_montage(T)
-    S = combine(C, T, r)
-
-    cluster_list = img_cluster(S)
-
-    for i in xrange(1, 7):
-        combined_similarity_montage(cluster_list, i)
+    #
+    # C = color_similarity_matrix(b, b_lb)
+    # T = texture_similarity_matrix(b, b_lb)
+    # # color_montage(C)
+    # # texture_montage(T)
+    # S = combine(C, T, r)
+    #
+    # cluster_list = img_cluster(S)
+    #
+    # for i in xrange(1, 7):
+    #     combined_similarity_montage(cluster_list, i)

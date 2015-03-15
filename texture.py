@@ -12,13 +12,23 @@ def texture_similarity(idx1, idx2, b, b_lb):
     img1 = cv2.imread("../Images/i" + str(idx1) + ".ppm", 0)
     img2 = cv2.imread("../Images/i" + str(idx2) + ".ppm", 0)
 
+    # cv2.imwrite("../laplacians/img1_bw.png", img1)
+
     kernel = np.matrix([[1, 1, 1], [1, -8, 1], [1, 1, 1]])
 
     l1 = cv2.filter2D(img1, cv2.CV_32F, kernel)
     l2 = cv2.filter2D(img2, cv2.CV_32F, kernel)
 
-    masked_l1 = l1[img1 > b_lb]
-    masked_l2 = l2[img2 > b_lb]
+    # cv2.imwrite("../laplacians/l1_b20.png", l1)
+
+    # mask1 = cv2.inRange(img1, b_lb, 255)
+    # mask2 = cv2.inRange(img2, b_lb, 255)
+
+    
+    masked_l1 = mask1 * l1
+    masked_l2 = mask2 * l2
+
+    cv2.imwrite("../laplacians/masked_l1_b20.png", masked_l1)
 
     h1 = create_histogram(masked_l1, b, idx1)
     h2 = create_histogram(masked_l2, b, idx2)
@@ -39,16 +49,16 @@ def create_histogram(laplacian, n_bins, idx):
     """Creates histogram from Laplacian image
     """
     hist, bins = np.histogram(laplacian, bins=n_bins)
-    # width = (bins[1] - bins[0])
-    # center = (bins[:-1] + bins[1:]) / 2
+    width = (bins[1] - bins[0])
+    center = (bins[:-1] + bins[1:]) / 2
 
-    # plt.bar(center, hist, align='center', width=width, color='m')
-    # plt.savefig("text_bkg/spec_10:" + str(idx) + ".png")
+    plt.bar(center, hist, align='center', width=width, color='m')
+    plt.savefig("../laplacians/hist" + str(idx) + "b_20.png")
     # plt.show()
 
     return hist
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # tot_similarities = 0
     #
     # text = [1,3,4,5,6,7,8,9,10,11, 12]
@@ -57,6 +67,6 @@ def create_histogram(laplacian, n_bins, idx):
     # for i in xrange(0, len(text)):
     #     for j in xrange(0, len(smooth)):
     #         tot_similarities += texture_similarity(text[i], smooth[j], 100, 0)
-    # texture_similarity(1, 18, 100, 5)
+    texture_similarity(5, 18, 41, 20)
 
     # print tot_similarities

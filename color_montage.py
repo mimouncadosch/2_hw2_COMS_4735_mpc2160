@@ -24,7 +24,7 @@ def color_montage(M):
     top = np.zeros((3))
     bottom = np.zeros((3))
 
-    montage = np.zeros((60*40, 89*7, 3))
+    montage = np.zeros((90*40, 89*7, 3))
 
     # Columns in the matrix range from 0 to 39
     # Images names range from 1 to 40
@@ -42,11 +42,24 @@ def color_montage(M):
         idx = parse_id(i)
         img = cv2.imread("../Images/i" + idx + ".ppm")
 
-        row = np.zeros((60, 89*7))
+        mat = np.ones((30, 89,3))
+        cv2.putText(mat, str(idx), (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255))
+        mat = np.uint8(mat)
+
+        img = np.vstack((img, mat))
+        row = np.zeros((90, 89*7))
 
         # Add most unlike images
         for j in xrange(0, 3):
             img2 = retrieve_img(unlike[j])
+
+            # Image label
+            mat = np.ones((30, 89,3))
+            cv2.putText(mat, str(unlike[j]), (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255))
+            mat = np.uint8(mat)
+
+            img2 = np.vstack((img2, mat))
+
             if j == 0:
                 row = np.hstack((img, img2))
             else:
@@ -56,6 +69,13 @@ def color_montage(M):
 
         for j in xrange(0, 3):
             img3 = retrieve_img(like[j])
+
+            # Image label
+            mat = np.ones((30, 89,3))
+            cv2.putText(mat, str(like[j]), (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255))
+            mat = np.uint8(mat)
+
+            img3 = np.vstack((img3, mat))
             row = np.hstack((row, img3))
 
         if i == 0:
@@ -63,10 +83,10 @@ def color_montage(M):
         else:
             montage = np.vstack((montage, row))
 
-    # cv2.imwrite('montage.png', montage)
-    # cv2.imshow('montage', montage)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    cv2.imwrite('color_montage.png', montage)
+    cv2.imshow('montage', montage)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
     return True

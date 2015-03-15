@@ -1,19 +1,35 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("../Images/i01.ppm")
-cv2.imshow("img", img)
-cv2.waitKey(0)
 
-mat = np.zeros((200, 300, 3))
+img = cv2.imread("../Images/i01.ppm")
+
+# cv2.imshow("i", img)
+# cv2.waitKey(0)
+mat = np.ones((30, 89,3))
+
 mat = np.uint8(mat)
 
-mat[0:60,0:89,:] = img
-# print type(mat)
-# print type(img)
+cv2.putText(mat, "Hello", (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255))
+# cv2.imshow("mat",mat)
+# cv2.waitKey(0)
 
-cv2.imshow("mat", mat)
+img = np.vstack((img, mat))
+cv2.imshow("i", img)
 cv2.waitKey(0)
+# img = cv2.imread("../Images/i01.ppm")
+# cv2.imshow("img", img)
+# cv2.waitKey(0)
+#
+# mat = np.zeros((200, 300, 3))
+# mat = np.uint8(mat)
+#
+# mat[0:60,0:89,:] = img
+# # print type(mat)
+# # print type(img)
+#
+# cv2.imshow("mat", mat)
+# cv2.waitKey(0)
 
 
 # row = 0

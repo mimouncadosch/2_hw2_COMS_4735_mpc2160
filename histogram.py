@@ -65,4 +65,4 @@ def histogram(nbins, idx, b_lb):
     return True
 
 if __name__ == "__main__":
-    histogram(100, 5, 40)
+    histogram(32, 5, 20)
